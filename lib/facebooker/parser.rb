@@ -832,6 +832,11 @@ module Facebooker
     end
   end
 
+  class NoteCreate < Parser
+    def self.process(data)
+      element('notes_create_response', data).content.strip
+    end
+  end
 
   class Errors < Parser#:nodoc:
     EXCEPTIONS = {
@@ -989,7 +994,8 @@ module Facebooker
       'facebook.dashboard.publishActivity' => DashboardPublishActivity,
       'facebook.dashboard.removeActivity' => DashboardRemoveActivity,
       'facebook.dashboard.getActivity' => DashboardGetActivity,
-      'facebook.intl.uploadNativeStrings' => UploadNativeStrings
+      'facebook.intl.uploadNativeStrings' => UploadNativeStrings,
+      'facebook.notes.create' => NoteCreate
     }
   end
 end
